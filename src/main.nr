@@ -4,7 +4,11 @@
 // Rounds number should be ~ log(p)/log(exp) log_5(21888242871839275222246405745257275088548364400416034343698204186575808495617) ~= 110
 // For 254 bit primes, exponent 5 and 220 rounds seems to be recommended
 
+
+
 fn MiMCFeistel(xL_in : Field, xR_in : Field, k : Field) ->  [Field;2] {
+
+    let NUM_ROUNDS = 220;
 
     //xL <-- xLxR[0]
     //xR <-- xLxR[1]
@@ -228,7 +232,7 @@ fn MiMCFeistel(xL_in : Field, xR_in : Field, k : Field) ->  [Field;2] {
       274945154732293792784580363548970818611304339008964723447672490026510689427,
       11050822248291117548220126630860474473945266276626263036056336623671308219529,
       2119542016932434047340813757208803962484943912710204325088879681995922344971
-    ];
+    ]; //first and last item are zero; 
 
     let exp: Field = 5;
 
@@ -240,7 +244,7 @@ fn MiMCFeistel(xL_in : Field, xR_in : Field, k : Field) ->  [Field;2] {
     let mut temp: Field = 5;
 
     //next round
-    for i in 1..219 {
+    for i in 1..NUM_ROUNDS-1 {
 
         t = k + xLxR[0] + constant[i-1];
         h = t.pow_32(exp); 
@@ -283,11 +287,17 @@ fn MiMCSponge<N,M>(ins : [Field;N], k: Field) ->  [Field;M]{
 
 fn main(ins : [Field;2], k : Field) -> pub [Field;3]{
     let res: [Field;3]  = MiMCSponge(ins,k);
-    //let res2 = mimc7(res,k);
-    //let res3 = mimc7(res2,k);
-    //let res4 = mimc7(res3,k);
-
     res
 }
 
 
+#[test]
+fn test_main(){
+    let ins: [Field;2] = [1,2];
+    let k: Field = 3;
+    let res: [Field;3]  = MiMCSponge(ins,k);
+
+    assert(res[0] == 20225509322021146255705869525264566735642015554514977326536820959638320229084);
+    assert(res[1]== 13871743498877225461925335509899475799121918157213219438898506786048812913771);
+    assert(res[2] == 21633608428713573518356618235457250173701815120501233429160399974209848779097);
+}
