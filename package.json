@@ -1,0 +1,19 @@
+{
+    "name": "MiMC-test",
+    "version": "0.0.1",
+    "description": "Example of MiMC-test in Circom",
+    "main": "index.js",
+    "scripts": {
+        "test:testFeistelMimc": "cd ./mimcTestCircom/testFeistelMimc && ./testFeistelMimc.sh",
+        "test:mimc7": "cd ./mimcTestCircom/testMimc && ./mimc7.sh",
+        "test:testMimcMulti": "cd ./mimcTestCircom/testMimcMulti && ./testMimcMulti.sh",
+        "test:testMimcSponge": "cd ./mimcTestCircom/testMimcSponge && ./testMimcSponge.sh"
+
+    },
+    "repository": "git@github.com:yi-sun/zk-attestor.git",
+    "author": "seugu ",
+    "dependencies": {
+        "circomlib": "^2.0.2",
+        "snarkjs": "^0.4.15"
+    }
+}
