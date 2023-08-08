@@ -1,4 +1,4 @@
-# Noir-MiMCsponge Examples
+# MiMC Circom Examples
 
 Run `test:testFeistelMimc`, for one round feistel -> MiMCFeistel(220)\
 Run `test:mimc7`, for one round mimc7 -> MiMC7(91)\
