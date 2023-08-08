@@ -1,3 +1,10 @@
+# Noir-MiMCsponge Examples
+
+Run `test:testFeistelMimc`, for one round feistel -> MiMCFeistel(220)\
+Run `test:mimc7`, for one round mimc7 -> MiMC7(91)\
+Run `test:testMimcMulti`, for multiple(2) mimc7 -> MultiMiMC7(2,91)\
+Run `test:testMimcSponge`, two input and three output mimcSponge -> MiMCSponge(2, 220, 3)
+
 # Noir-MiMCsponge
 
  MiMC-2p/p implementation \
